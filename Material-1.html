@@ -1,0 +1,62 @@
+<!DOCTYPE = html>
+<html>
+<head>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+
+<style>
+
+model-viewer {
+    width: 90%;
+    height: 90%;
+}
+
+#ar-button:active {
+    background-color: #E8EAED/*黑色*/;
+    cursor: pointer;
+}
+
+#ar-button:hover {
+    background-color: #7bc4ff/*黑色*/;
+}
+
+#ar-button:focus-visible {
+    outline: 1px solid #4285f4/*藍色*/;
+}
+
+@keyframes circle {
+    from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
+    to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+
+@keyframes elongate {
+    from { transform: translateX(100px); }
+    to   { transform: translateX(-100px); }
+}
+
+model-viewer > #ar-prompt {
+    position: absolute;
+    left: 50%;
+    bottom: 175px;
+    animation: elongate 2s infinite ease-in-out alternate;
+    display: none;
+}
+
+model-viewer[ar-status="session-started"] > #ar-prompt {
+    display: block;
+}
+
+</style>
+</head>
+
+<body>
+    <model-viewer camera-controls id="exposure-demo" environment-image="Material-1.hdr" src="Sneakers01_0222.gltf" exposure="1" shadow-intensity="0">
+    </model-viewer>
+
+    <!-- 設定環境光照改變背景 skybox-image="Yellow1.png" -->
+    <!-- 設定環境光照而不改變背景 environment-image="neutral" "Yellow1.png" "01.hdr" -->
+    <!-- 使用 exposure 控制渲染曝光 exposure="1" -->
+
+</body>
+</html>
